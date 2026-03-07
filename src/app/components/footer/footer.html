@@ -1,0 +1,30 @@
+<!--
+  Footer simple y limpio.
+
+  FLEXBOX RESPONSIVE:
+  flex flex-col md:flex-row →
+    Móvil: apilado verticalmente (flex-col)
+    Desktop: en fila horizontal (md:flex-row)
+
+  items-center justify-between →
+    Centrado vertical, espaciado al máximo horizontal
+-->
+
+<footer class="py-8 px-4 border-t border-gray-800">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+    <p class="text-gray-500 text-sm">
+      &copy; {{ currentYear }} Josué Exposito Acosta. Todos los derechos reservados.
+      <!--
+        &copy; → Entidad HTML para el símbolo ©
+        {{ currentYear }} → Interpolación: muestra 2026 (o el año actual)
+      -->
+    </p>
+    <p class="text-gray-600 text-sm">
+      Construido con <span class="text-cyan-400">Angular</span> &amp; <span class="text-cyan-400">Tailwind CSS</span>
+      <!--
+        &amp; → Entidad HTML para el símbolo &
+        Buena práctica: usar entidades HTML para caracteres especiales
+      -->
+    </p>
+  </div>
+</footer>

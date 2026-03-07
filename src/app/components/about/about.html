@@ -1,0 +1,73 @@
+<!--
+  NUEVAS CLASES TAILWIND:
+
+  CSS GRID:
+  grid           → Activa CSS Grid (sistema de layout en cuadrícula)
+  md:grid-cols-2 → 2 columnas a partir de 768px (1 columna en móvil)
+  gap-12         → Espacio de 3rem entre las celdas del grid
+
+  items-start → Alinea los hijos de grid al inicio (arriba)
+  space-y-6   → Espacio vertical de 1.5rem entre hijos
+
+  TARJETAS (Cards):
+  bg-gray-800/50 → Fondo gris semitransparente (efecto "cristal")
+  border border-gray-700/50 → Borde sutil semitransparente
+  rounded-xl → Bordes muy redondeados (12px)
+  hover:border-cyan-400/30 → Al hover, el borde cambia a cyan sutil
+  transition-all duration-300 → Anima TODOS los cambios en 300ms
+
+  TEXTO DESTACADO:
+  text-cyan-400 font-semibold → Resalta palabras clave en cyan + seminegrita
+  leading-relaxed → Interlineado cómodo para lectura
+-->
+
+<section id="about" class="py-24 px-4">
+  <div class="max-w-6xl mx-auto">
+    <!-- Título de sección con gradiente -->
+    <h2 class="text-4xl font-bold text-center mb-4">
+      <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Sobre Mí</span>
+    </h2>
+    <!-- Línea decorativa debajo del título -->
+    <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-12 rounded-full"></div>
+
+    <!--
+      CSS GRID en acción:
+      En móvil: 1 columna (texto arriba, tarjetas abajo)
+      En md+: 2 columnas lado a lado
+    -->
+    <div class="grid md:grid-cols-2 gap-12 items-start">
+
+      <!-- Columna izquierda: Texto descriptivo -->
+      <div class="space-y-6">
+        <p class="text-gray-300 leading-relaxed text-lg">
+          Profesional con más de <span class="text-cyan-400 font-semibold">15 años de experiencia</span> en ingeniería de software,
+          especializado en el diseño e implementación de aplicaciones web empresariales de alto rendimiento.
+        </p>
+        <p class="text-gray-300 leading-relaxed">
+          Experto en el desarrollo de soluciones end-to-end utilizando <span class="text-cyan-400 font-semibold">JavaScript/TypeScript</span>
+          como stack tecnológico principal, con dominio completo del ciclo de vida del desarrollo (SDLC).
+        </p>
+        <p class="text-gray-300 leading-relaxed">
+          Más de una década de trayectoria en proyectos empresariales para el sector corporativo, con foco en la
+          digitalización de procesos operativos, sistemas de gestión de información y soluciones business-critical
+          para organizaciones nacionales e internacionales.
+        </p>
+      </div>
+
+      <!-- Columna derecha: Tarjetas de competencias -->
+      <div class="grid grid-cols-1 gap-4">
+        @for (competence of competences; track competence.title) {
+          <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-5 hover:border-cyan-400/30 transition-all duration-300">
+            <div class="flex items-start gap-3">
+              <span class="text-2xl">{{ competence.icon }}</span>
+              <div>
+                <h3 class="text-cyan-400 font-semibold mb-1">{{ competence.title }}</h3>
+                <p class="text-gray-400 text-sm">{{ competence.description }}</p>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

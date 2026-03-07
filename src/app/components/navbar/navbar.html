@@ -1,0 +1,127 @@
+<!--
+  GUÍA DE CLASES TAILWIND USADAS AQUÍ:
+
+  POSICIONAMIENTO:
+  fixed       → Fija el elemento en la pantalla (no se mueve al hacer scroll)
+  top-0       → Pegado arriba del todo
+  w-full      → Ancho 100%
+  z-50        → z-index: 50 (aparece por encima de otros elementos)
+
+  FONDO Y BORDES:
+  bg-gray-900/95  → Fondo gris oscuro con 95% de opacidad (el /95 es la opacidad)
+  backdrop-blur-sm → Efecto de desenfoque del fondo (efecto "cristal esmerilado")
+  border-b        → Borde solo en la parte inferior
+  border-gray-800 → Color del borde
+
+  FLEXBOX (sistema de layout):
+  flex            → Activa flexbox (los hijos se colocan en fila)
+  items-center    → Centra verticalmente
+  justify-between → Espacia los hijos al máximo (uno a cada extremo)
+  space-x-8       → Espacio horizontal de 2rem entre hijos
+
+  RESPONSIVO (mobile-first):
+  hidden md:flex  → Oculto por defecto, visible como flex desde pantalla mediana (768px+)
+  md:hidden       → Visible por defecto, oculto desde 768px+
+
+  TIPOGRAFÍA:
+  text-xl    → Tamaño de fuente extra large
+  font-bold  → Negrita
+  text-sm    → Tamaño de fuente small
+
+  COLORES Y GRADIENTES:
+  text-cyan-400   → Color de texto cyan (el azul claro de nuestro tema)
+  bg-gradient-to-r → Gradiente de izquierda a derecha
+  from-cyan-400    → Color inicio del gradiente
+  to-blue-500      → Color final del gradiente
+  bg-clip-text     → El gradiente se aplica AL TEXTO (no al fondo)
+  text-transparent → Hace el texto transparente para que se vea el gradiente
+
+  TRANSICIONES:
+  transition-colors → Anima cambios de color suavemente
+  duration-300      → La animación dura 300ms
+  hover:text-cyan-400 → Al pasar el mouse, cambia a cyan
+-->
+
+<nav class="fixed top-0 w-full bg-gray-900/95 backdrop-blur-sm border-b border-gray-800 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!--
+      max-w-7xl → Ancho máximo de 80rem (para que no se estire en pantallas enormes)
+      mx-auto   → margin horizontal auto (centra el contenedor)
+      px-4 sm:px-6 lg:px-8 → Padding horizontal que aumenta con el tamaño de pantalla
+    -->
+    <div class="flex items-center justify-between h-16">
+
+      <!-- LOGO -->
+      <a href="#hero" class="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+        JEA
+      </a>
+
+      <!-- MENÚ DESKTOP (solo visible en pantallas md: 768px+) -->
+      <div class="hidden md:flex space-x-8">
+        <!--
+          @for → Sintaxis de control de flujo de Angular 17+.
+          Itera sobre menuItems y crea un <a> por cada uno.
+          "track item.href" → Angular necesita un identificador único
+          para optimizar el renderizado (como key en React).
+        -->
+        @for (item of menuItems; track item.href) {
+          <a [href]="item.href"
+             class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 text-sm font-medium">
+            <!--
+              [href]="item.href" → Property binding de Angular.
+              Los corchetes [] significan: "evalúa la expresión TypeScript
+              y asigna el resultado al atributo href".
+            -->
+            {{ item.label }}
+            <!--
+              {{ }} → Interpolación. Muestra el valor de la variable en el HTML.
+            -->
+          </a>
+        }
+      </div>
+
+      <!-- BOTÓN HAMBURGUESA (solo visible en móvil, oculto desde md:) -->
+      <button (click)="toggleMenu()" class="md:hidden text-gray-300 hover:text-white">
+        <!--
+          (click)="toggleMenu()" → Event binding de Angular.
+          Los paréntesis () significan: "cuando ocurra este evento,
+          ejecuta esta función".
+        -->
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <!--
+            @if/@else → Condicional de Angular 17+.
+            Muestra un icono u otro según el estado del menú.
+            isMenuOpen() ← se lee con paréntesis porque es un signal.
+          -->
+          @if (isMenuOpen()) {
+            <!-- Icono X (cerrar) -->
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          } @else {
+            <!-- Icono hamburguesa (3 líneas) -->
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          }
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- MENÚ MÓVIL (se despliega al hacer clic en la hamburguesa) -->
+  @if (isMenuOpen()) {
+    <div class="md:hidden bg-gray-900 border-t border-gray-800">
+      <div class="px-4 py-3 space-y-2">
+        @for (item of menuItems; track item.href) {
+          <a [href]="item.href"
+             (click)="toggleMenu()"
+             class="block px-3 py-2 text-gray-300 hover:text-cyan-400 hover:bg-gray-800 rounded-md transition-colors">
+            <!--
+              (click)="toggleMenu()" → Al hacer clic en un enlace del menú móvil,
+              cierra el menú automáticamente. Buena práctica de UX.
+              block → display: block (cada enlace ocupa toda una línea)
+            -->
+            {{ item.label }}
+          </a>
+        }
+      </div>
+    </div>
+  }
+</nav>

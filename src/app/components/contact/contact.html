@@ -1,0 +1,65 @@
+<!--
+  CONCEPTO: Grid en 3 columnas para tarjetas pequeñas
+  sm:grid-cols-3 → 3 columnas a partir de 640px
+
+  ACCESIBILIDAD (a11y):
+  - target="_blank" abre en nueva pestaña
+  - rel="noopener noreferrer" → SEGURIDAD: evita que la página nueva
+    tenga acceso a window.opener (vector de ataque conocido como
+    "tabnabbing"). SIEMPRE añádelo cuando uses target="_blank".
+
+  IMPORTANTE: Cambia los links con tus datos reales.
+-->
+
+<section id="contact" class="py-24 px-4 bg-gray-800/30">
+  <div class="max-w-3xl mx-auto text-center">
+    <h2 class="text-4xl font-bold mb-4">
+      <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Contacto</span>
+    </h2>
+    <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-8 rounded-full"></div>
+    <p class="text-gray-400 text-lg mb-12 max-w-lg mx-auto">
+      ¿Interesado en colaborar o tienes un proyecto en mente?
+      No dudes en ponerte en contacto.
+    </p>
+
+    <!-- Tarjetas de contacto -->
+    <div class="grid sm:grid-cols-3 gap-6 mb-12">
+
+      <!-- Email -->
+      <a href="mailto:josue.exposito@email.com"
+         class="group bg-gray-800/50 border border-gray-700/50 rounded-xl p-6 hover:border-cyan-400/30 transition-all duration-300 block">
+        <div class="text-3xl mb-3">📧</div>
+        <h3 class="text-white font-semibold mb-1 group-hover:text-cyan-400 transition-colors">Email</h3>
+        <p class="text-gray-500 text-sm">Escríbeme</p>
+      </a>
+
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/in/josue-exposito" target="_blank" rel="noopener noreferrer"
+         class="group bg-gray-800/50 border border-gray-700/50 rounded-xl p-6 hover:border-cyan-400/30 transition-all duration-300 block">
+        <div class="text-3xl mb-3">💼</div>
+        <h3 class="text-white font-semibold mb-1 group-hover:text-cyan-400 transition-colors">LinkedIn</h3>
+        <p class="text-gray-500 text-sm">Conectemos</p>
+      </a>
+
+      <!-- GitHub -->
+      <a href="https://github.com/josue-exposito" target="_blank" rel="noopener noreferrer"
+         class="group bg-gray-800/50 border border-gray-700/50 rounded-xl p-6 hover:border-cyan-400/30 transition-all duration-300 block">
+        <div class="text-3xl mb-3">🐙</div>
+        <h3 class="text-white font-semibold mb-1 group-hover:text-cyan-400 transition-colors">GitHub</h3>
+        <p class="text-gray-500 text-sm">Mi código</p>
+      </a>
+    </div>
+
+    <!-- Botón CTA principal -->
+    <a href="mailto:josue.exposito@email.com"
+       class="inline-block px-10 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-lg font-semibold
+              hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-cyan-500/25">
+      <!--
+        inline-block → Se comporta como inline (fluye con texto)
+        pero acepta width/height/padding como un block.
+        Necesario para que el <a> respete el padding correctamente.
+      -->
+      Enviar Mensaje
+    </a>
+  </div>
+</section>

@@ -1,0 +1,57 @@
+<!--
+  PATRÓN DE DISEÑO: Split Layout
+
+  grid md:grid-cols-2 gap-12 → Dos columnas iguales en desktop.
+  Columna izquierda: Educación formal
+  Columna derecha: Certificaciones
+
+  En móvil se apilan verticalmente (una debajo de otra)
+  porque la regla "grid-cols-2" solo aplica desde md: (768px+).
+
+  No hay conceptos nuevos de Angular aquí — solo iteración
+  con @for y renderizado de datos. La práctica hace al maestro.
+-->
+
+<section id="education" class="py-24 px-4">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-4xl font-bold text-center mb-4">
+      <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Educación y Certificaciones</span>
+    </h2>
+    <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-16 rounded-full"></div>
+
+    <div class="grid md:grid-cols-2 gap-12">
+
+      <!-- Columna: Educación formal -->
+      <div>
+        <h3 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
+          <span class="text-cyan-400">🎓</span> Educación
+        </h3>
+        <div class="space-y-6">
+          @for (edu of education; track edu.title) {
+            <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-5 hover:border-cyan-400/30 transition-all duration-300">
+              <h4 class="text-white font-bold text-lg">{{ edu.title }}</h4>
+              <p class="text-cyan-400 text-sm mt-1">{{ edu.institution }}</p>
+              <p class="text-gray-500 text-sm font-mono mt-1">{{ edu.period }}</p>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Columna: Certificaciones -->
+      <div>
+        <h3 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
+          <span class="text-cyan-400">📜</span> Certificaciones
+        </h3>
+        <div class="space-y-4">
+          @for (cert of certifications; track cert.title) {
+            <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-5 hover:border-cyan-400/30 transition-all duration-300">
+              <h4 class="text-white font-semibold">{{ cert.title }}</h4>
+              <p class="text-gray-400 text-sm mt-1">{{ cert.institution }}</p>
+              <p class="text-gray-500 text-sm font-mono mt-1">{{ cert.year }}</p>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

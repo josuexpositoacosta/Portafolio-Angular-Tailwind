@@ -1,0 +1,86 @@
+<!--
+  CONCEPTO NUEVO: [style.width.%]="valor"
+
+  Angular permite bindear directamente a propiedades CSS:
+    [style.propiedad.unidad]="expresión"
+
+  Ejemplos:
+    [style.width.%]="85"     → width: 85%
+    [style.width.px]="200"   → width: 200px
+    [style.opacity]="0.5"    → opacity: 0.5
+    [style.color]="'red'"    → color: red
+
+  Esto es MUY útil para barras de progreso porque el ancho
+  es DINÁMICO (depende del nivel de cada habilidad).
+  No puedes hacer esto con clases Tailwind porque Tailwind
+  necesita valores fijos en tiempo de compilación.
+
+  GRID RESPONSIVE 3 COLUMNAS:
+  grid md:grid-cols-2 lg:grid-cols-3 →
+    Móvil: 1 columna
+    Tablet (md: 768px+): 2 columnas
+    Desktop (lg: 1024px+): 3 columnas
+  Esto es "mobile-first": defines móvil por defecto y añades
+  breakpoints para pantallas más grandes.
+-->
+
+<section id="skills" class="py-24 px-4 bg-gray-800/30">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-4xl font-bold text-center mb-4">
+      <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Competencias Técnicas</span>
+    </h2>
+    <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-16 rounded-full"></div>
+
+    <!--
+      Grid de 3 columnas en desktop.
+      Cada card de categoría ocupa una celda del grid.
+    -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      @for (category of skillCategories; track category.title) {
+        <div class="bg-gray-800/50 border border-gray-700/50 rounded-xl p-6 hover:border-cyan-400/30 transition-all duration-300">
+
+          <!-- Encabezado de categoría -->
+          <div class="flex items-center gap-3 mb-6">
+            <span class="text-3xl">{{ category.icon }}</span>
+            <h3 class="text-lg font-bold text-white">{{ category.title }}</h3>
+          </div>
+
+          <!-- Lista de habilidades con barras de progreso -->
+          <div class="space-y-4">
+            @for (skill of category.skills; track skill.name) {
+              <div>
+                <!-- Nombre + porcentaje -->
+                <div class="flex justify-between mb-1">
+                  <span class="text-gray-300 text-sm font-medium">{{ skill.name }}</span>
+                  <span class="text-cyan-400 text-xs font-mono">{{ skill.level }}%</span>
+                </div>
+
+                <!--
+                  BARRA DE PROGRESO:
+
+                  Estructura de 2 divs:
+                  1. Div exterior (fondo): w-full bg-gray-700/50 h-2
+                     → Ancho 100%, fondo gris, altura 8px = el "track" vacío
+
+                  2. Div interior (relleno): bg-gradient-to-r h-2
+                     → Con gradiente cyan-to-blue, misma altura
+                     → [style.width.%]="skill.level" controla el ancho dinámicamente
+
+                  Si skill.level = 90, el div interior tendrá width: 90%
+                  → Se ve como una barra rellena al 90%
+
+                  transition-all duration-1000 → La barra se anima al aparecer
+                -->
+                <div class="w-full bg-gray-700/50 rounded-full h-2">
+                  <div class="bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full transition-all duration-1000"
+                       [style.width.%]="skill.level">
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

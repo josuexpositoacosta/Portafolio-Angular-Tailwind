@@ -1,0 +1,150 @@
+<!--
+  NUEVAS CLASES TAILWIND EN ESTA SECCIÓN:
+
+  LAYOUT:
+  min-h-screen → Altura mínima = 100% de la pantalla (ocupa toda la vista)
+  relative     → Posición relativa (permite colocar hijos con absolute)
+  absolute     → Posición absoluta respecto al padre relative
+  inset-0      → top:0, right:0, bottom:0, left:0 (cubre todo el padre)
+  overflow-hidden → Oculta contenido que se sale del contenedor
+
+  FLEXBOX AVANZADO:
+  flex items-center justify-center → Centra el contenido vertical y horizontalmente
+  flex-col   → Los hijos se apilan verticalmente
+  sm:flex-row → A partir de 640px, los hijos se ponen en fila horizontal
+  gap-4       → Espacio de 1rem entre hijos de flex
+
+  TAMAÑOS Y ESPACIADO:
+  pt-16     → padding-top de 4rem (para no quedar debajo del navbar fijo)
+  px-4      → padding horizontal de 1rem
+  mb-4      → margin-bottom de 1rem
+  max-w-4xl → Ancho máximo de 56rem
+  w-96      → Ancho de 24rem
+  h-96      → Alto de 24rem
+
+  EFECTOS VISUALES:
+  blur-3xl     → Desenfoque extremo (las burbujas del fondo)
+  animate-pulse → Animación de pulsación (las burbujas "respiran")
+  animate-bounce → Animación de rebote (la flecha de scroll)
+  rounded-full  → Bordes completamente redondeados (círculo)
+
+  RESPONSIVE TEXT:
+  text-5xl sm:text-7xl → 3rem en móvil, 4.5rem a partir de 640px
+  text-2xl sm:text-3xl → Títulos que crecen en pantallas más grandes
+
+  BOTÓN CON HOVER:
+  transform hover:scale-105 → Al pasar el mouse, crece un 5%
+  shadow-lg shadow-cyan-500/25 → Sombra grande con tinte cyan al 25% opacidad
+-->
+
+<section id="hero" class="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
+
+  <!-- Fondo animado con burbujas de color desenfocadas -->
+  <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+    <!--
+      bg-gradient-to-br → Gradiente hacia abajo-derecha (bottom-right)
+      via-gray-800 → Color intermedio del gradiente (degrado en 3 pasos)
+    -->
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+    <!--
+      bg-cyan-500/10 → Fondo cyan con solo 10% de opacidad
+      Combinado con blur-3xl → Crea un efecto de "orbe" luminoso suave
+      animate-pulse → Las burbujas "respiran" con una animación sutil
+    -->
+  </div>
+
+  <!-- Contenido principal (z-10 lo pone encima del fondo) -->
+  <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+
+    <!-- Subtítulo superior -->
+    <p class="text-cyan-400 text-lg font-mono mb-4 tracking-wider">Hola, mi nombre es</p>
+    <!--
+      font-mono → Fuente monoespaciada (estilo "código", muy usado en portafolios dev)
+      tracking-wider → Más espacio entre letras (letter-spacing)
+    -->
+
+    <!-- Nombre con gradiente -->
+    <h1 class="text-5xl sm:text-7xl font-bold mb-4">
+      <span class="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+        Josué Exposito
+      </span>
+      <br />
+      <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+        Acosta
+      </span>
+    </h1>
+    <!--
+      TRUCO DEL TEXTO CON GRADIENTE:
+      1. bg-gradient-to-r → Crea un gradiente de fondo
+      2. bg-clip-text → Recorta el gradiente a la forma del texto
+      3. text-transparent → Hace el texto transparente para ver el gradiente
+      Resultado: texto que "se rellena" con un gradiente de colores
+    -->
+
+    <!-- Título profesional -->
+    <h2 class="text-2xl sm:text-3xl text-gray-400 font-light mb-6">
+      Desarrollador Full Stack Senior
+    </h2>
+    <!--
+      font-light → peso 300 (más delgado que normal)
+      Contraste visual: h1 es bold y grande, h2 es light y menor
+    -->
+
+    <!-- Descripción -->
+    <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+      Arquitecto de Soluciones Web con +15 años de experiencia en ingeniería de software.
+      Especializado en aplicaciones web empresariales de alto rendimiento con JavaScript/TypeScript.
+    </p>
+    <!--
+      leading-relaxed → Interlineado amplio (line-height: 1.625)
+      Hace el texto más legible en párrafos largos
+    -->
+
+    <!-- Botones CTA (Call To Action) -->
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <!-- Botón primario (relleno) -->
+      <a href="#projects"
+         class="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-lg font-semibold
+                hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 transform hover:scale-105
+                shadow-lg shadow-cyan-500/25">
+        Ver Proyectos
+      </a>
+      <!--
+        ANATOMÍA DEL BOTÓN:
+        px-8 py-3 → Padding interno (ancho y alto)
+        bg-gradient-to-r → Fondo con gradiente
+        rounded-lg → Bordes redondeados
+        hover:from-cyan-400 → Al hacer hover, el gradiente cambia de color
+        transition-all duration-300 → Todos los cambios se animan en 300ms
+        transform hover:scale-105 → Crece 5% al hover
+        shadow-lg shadow-cyan-500/25 → Sombra con color cyan al 25%
+      -->
+
+      <!-- Botón secundario (solo borde) -->
+      <a href="#contact"
+         class="px-8 py-3 border border-cyan-400 text-cyan-400 rounded-lg font-semibold
+                hover:bg-cyan-400/10 transition-all duration-300 transform hover:scale-105">
+        Contactar
+      </a>
+      <!--
+        border border-cyan-400 → Solo borde, sin fondo
+        hover:bg-cyan-400/10 → Al hover, aparece un fondo cyan muy sutil (10%)
+        Patrón común: botón primario (relleno) + secundario (outline)
+      -->
+    </div>
+
+    <!-- Indicador de scroll -->
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <!--
+        left-1/2 -translate-x-1/2 → Truco para centrar horizontalmente:
+        1. left-1/2 mueve al 50% del padre
+        2. -translate-x-1/2 retrocede 50% de su propio ancho
+        Resultado: centrado perfecto
+      -->
+      <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+      </svg>
+    </div>
+  </div>
+</section>
