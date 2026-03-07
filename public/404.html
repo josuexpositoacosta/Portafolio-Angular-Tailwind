@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<!--
+  lang="es" → Le dice al navegador y a los lectores de pantalla
+  que el contenido está en español. Importante para accesibilidad (a11y).
+-->
+<head>
+  <meta charset="utf-8">
+  <!-- charset="utf-8" → Codificación de caracteres. Permite tildes, ñ, etc. -->
+
+  <title>Josué Exposito Acosta | Desarrollador Full Stack Senior</title>
+  <!-- title → Lo que aparece en la pestaña del navegador y en resultados de Google -->
+
+  <base href="/">
+  <!-- base href → Le dice a Angular cuál es la ruta raíz para el enrutamiento -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--
+    viewport → CRÍTICO para diseño responsivo.
+    width=device-width → El ancho se adapta al dispositivo (móvil, tablet, desktop)
+    initial-scale=1 → Sin zoom inicial
+  -->
+
+  <meta name="description" content="Portafolio de Josué Exposito Acosta - Desarrollador Full Stack Senior con más de 15 años de experiencia en ingeniería de software">
+  <!-- description → Lo que muestra Google debajo del título en los resultados de búsqueda (SEO) -->
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Google Fonts: Cargamos "Inter", una fuente moderna y legible -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!--
+    preconnect → Le dice al navegador: "prepárate para conectar con este servidor
+    ANTES de que lo necesites". Esto acelera la carga de la fuente.
+  -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!--
+    Cargamos Inter en varios pesos (grosores):
+    300=light, 400=normal, 500=medium, 600=semibold, 700=bold, 800=extrabold
+    display=swap → Muestra texto con fuente del sistema mientras carga Inter (mejor UX)
+  -->
+</head>
+<body class="font-sans">
+  <!--
+    font-sans → Clase Tailwind que aplica la fuente sans-serif.
+    Como definimos Inter en @theme como --font-sans, Tailwind usará Inter aquí.
+  -->
+  <app-root></app-root>
+  <!--
+    app-root → Este es el "selector" del componente raíz de Angular.
+    Angular reemplaza esta etiqueta con todo el contenido de tu aplicación.
+    Es el punto de entrada donde se "monta" toda la app.
+  -->
+</body>
+</html>
