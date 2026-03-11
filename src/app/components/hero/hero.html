@@ -55,7 +55,15 @@
   </div>
 
   <!-- Contenido principal (z-10 lo pone encima del fondo) -->
-  <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+  <div class="relative z-10 flex flex-col sm:flex-row items-center px-4 max-w-4xl mx-auto gap-8">
+
+    <!-- Tu foto -->
+    <div class="flex-shrink-0">
+      <img src="foto.jpg" alt="Josué Exposito Acosta" 
+           class="w-48 h-48 sm:w-64 sm:h-64 rounded-full mx-auto object-cover border-4 border-cyan-500/30" />
+    </div>
+
+    <div class="text-center sm:text-left">
 
     <!-- Subtítulo superior -->
     <p class="text-cyan-400 text-lg font-mono mb-4 tracking-wider">Hola, mi nombre es</p>
@@ -101,8 +109,8 @@
       Hace el texto más legible en párrafos largos
     -->
 
-    <!-- Botones CTA (Call To Action) -->
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <!-- Botones CTA (Call To Action) -->
+    <div class="flex flex-col sm:flex-row gap-4 justify-center sm:justify-start">
       <!-- Botón primario (relleno) -->
       <a href="#projects"
          class="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-lg font-semibold
@@ -132,6 +140,8 @@
         hover:bg-cyan-400/10 → Al hover, aparece un fondo cyan muy sutil (10%)
         Patrón común: botón primario (relleno) + secundario (outline)
       -->
+    </div>
+
     </div>
 
     <!-- Indicador de scroll -->
