@@ -57,7 +57,7 @@
       </a>
 
       <!-- MENÚ DESKTOP (solo visible en pantallas md: 768px+) -->
-      <div class="hidden md:flex items-center space-x-8">
+      <div class="hidden md:flex space-x-8">
         <!--
           @for → Sintaxis de control de flujo de Angular 17+.
           Itera sobre menuItems y crea un <a> por cada uno.
@@ -78,11 +78,6 @@
             -->
           </a>
         }
-        <!-- Botón PDF -->
-        <button (click)="printPDF()"
-                class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 text-sm font-medium">
-          PDF
-        </button>
       </div>
 
       <!-- BOTÓN HAMBURGUESA (solo visible en móvil, oculto desde md:) -->
@@ -126,11 +121,6 @@
             {{ item.label }}
           </a>
         }
-        <!-- Botón PDF móvil -->
-        <button (click)="printPDF(); toggleMenu()"
-                class="block w-full text-left px-3 py-2 text-gray-300 hover:text-cyan-400 hover:bg-gray-800 rounded-md transition-colors">
-          PDF
-        </button>
       </div>
     </div>
   }

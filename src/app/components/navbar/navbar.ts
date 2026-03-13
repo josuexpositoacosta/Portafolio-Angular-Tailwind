@@ -39,8 +39,4 @@ export class Navbar {
   toggleMenu() {
     this.isMenuOpen.update(v => !v);
   }
-
-  printPDF() {
-    window.print();
-  }
 }
